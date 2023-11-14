@@ -1,2 +1,2 @@
 web: bin/rails server -b 0.0.0.0
-worker: bin/webpack-dev-server
+webpack: bin/webpack-dev-server
