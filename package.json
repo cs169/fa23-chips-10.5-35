@@ -34,7 +34,7 @@
     "scripts": {
         "lint": "./node_modules/.bin/eslint \"app/**/*.js\" \"config/**/*.js\"",
         "lint_fix": "./node_modules/.bin/eslint --fix \"app/**/*.js\" \"config/**/*.js\"",
-        "heroku-prebuild": "npm install --dev"
+        "heroku-prebuild": "yarn install --dev"
     },
     "keywords": [
         "CS169",
