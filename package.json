@@ -5,8 +5,8 @@
     "version": "0.0.1",
     "main": "babel.config.js",
     "engines": {
-        "node": "13.x",
-        "yarn": "1.19.x"
+        "node": "12.x || 14.x || 16.x",
+        "yarn": "1.22.x"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.0",
@@ -33,7 +33,8 @@
     },
     "scripts": {
         "lint": "./node_modules/.bin/eslint \"app/**/*.js\" \"config/**/*.js\"",
-        "lint_fix": "./node_modules/.bin/eslint --fix \"app/**/*.js\" \"config/**/*.js\""
+        "lint_fix": "./node_modules/.bin/eslint --fix \"app/**/*.js\" \"config/**/*.js\"",
+        "heroku-prebuild": "npm install --dev"
     },
     "keywords": [
         "CS169",
