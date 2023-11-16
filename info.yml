@@ -1,0 +1,20 @@
+project:
+  name: 'CS169-fa2335'
+  owner: 'fa23'
+  teamId: '35'
+  identities: {}
+  notifications:
+    email: 'winniezhu@berkeley.edu'
+  members:
+    member1:
+      name: 'Alysa'
+      surname: 'Liu' 
+      githubUsername: 'alysaluu'
+    member2:
+      name: 'Neel'
+      surname: 'Roy' 
+      githubUsername: 'neeljroy77'
+    member3:
+      name: 'Winnie'
+      surname: 'Zhu' 
+      githubUsername: 'winnie-zhu'
