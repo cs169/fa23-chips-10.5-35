@@ -16,12 +16,9 @@ class Representative < ApplicationRecord
           ocdid_temp = office.division_id
         end
       end
-
-      rep = Representative.create!({ name: official.name, ocdid: ocdid_temp,
-          title: title_temp })
-
-      reps << rep unless reps.include?(rep)
-
+      rep_params = { name: official.name, ocdid: ocdid_temp, title: title_temp }
+      rep = Representative.find_or_create_by(rep_params)
+      reps.push(rep)
     end
 
     reps
