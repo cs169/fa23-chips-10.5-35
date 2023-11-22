@@ -20,9 +20,8 @@ class Representative < ApplicationRecord
       rep = Representative.create!({ name: official.name, ocdid: ocdid_temp,
           title: title_temp })
 
-      if !reps.include? rep
-        reps.push(rep)
-      end
+      reps << rep unless reps.include?(rep)
+
     end
 
     reps
