@@ -21,7 +21,7 @@ class Representative < ApplicationRecord
         rep = Representative.create!({ name: official.name, ocdid: ocdid_temp,
           title: title_temp })
         reps.push(rep)
-      end   
+      end
     end
     reps
   end
