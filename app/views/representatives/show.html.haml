@@ -3,36 +3,36 @@
     .col-12.text-center
       %h2
         %strong
-          #{@representative.name}
+          = @representative.name.to_s
 
   .row.mt-3
     .col-12.text-center
-      %img{src: @representative.photo_url, alt: "Representative Photo", class: "img-fluid rounded-circle"}
-  
+      %img{ src: @representative.photo_url, alt: 'Representative Photo', class: 'img-fluid rounded-circle' }
+
   .row.mt-3
     .col-12.text-center
       %p
         %strong
-          Office: 
-        #{@representative.title}
-  
+          Office:
+        = @representative.title.to_s
+
   .row.mt-3
     .col-12.text-center
       %p
         %strong
           OCDID: 
-        #{@representative.ocdid}
-  
+        = @representative.ocdid.to_s
+
   .row.mt-3
     .col-12.text-center
       %p
         %strong
-          Contact Address: 
+          Contact Address:
         #{@representative.address}, #{@representative.city}, #{@representative.state}, #{@representative.zip}
 
   .row.mt-3
     .col-12.text-center
       %p
         %strong
-          Political Party: 
-        #{@representative.party}
+          Political Party:
+        = @representative.ocdid.to_s
