@@ -42,15 +42,13 @@ class Representative < ApplicationRecord
   end
 
   def self.create_rep(representative, official, title_temp, ocdid_temp, party_temp, photo_url_temp,
-                      zip_temp, street_temp, city_temp, state_temp)
+                        zip_temp, street_temp, city_temp, state_temp)
     return unless representative.new_record?
-  
     rep_params = {
       name: official.name, ocdid: ocdid_temp, party: party_temp,
       photo_url: photo_url_temp, zip: zip_temp, address: street_temp,
       city: city_temp, state: state_temp
     }
-  
     representative = Representative.create!(rep_params)
     representative.title = title_temp
     representative.save!
