@@ -31,8 +31,8 @@ class Representative < ApplicationRecord
         end
         #party_temp = official.party
         party_temp = official.party if official.instance_variable_defined?(:@party)
-        print "print this"
-        puts party_temp
+        #print "print this"
+        #puts party_temp
       end
 
       representative = Representative.find_or_initialize_by(name: official.name, ocdid: ocdid_temp)
