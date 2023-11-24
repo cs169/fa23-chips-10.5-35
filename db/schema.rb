@@ -51,11 +51,11 @@ ActiveRecord::Schema.define(version: 2020_07_28_065604) do
     t.string "title"
     t.string "party"
     t.string "address"
-    t.string "city"
     t.string "street"
-    t.string "photo_url"
     t.string "zip"
     t.string "state"
+    t.string "city"
+    t.string "photo_url"
   end
 
   create_table "states", force: :cascade do |t|

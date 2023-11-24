@@ -29,7 +29,8 @@ class Representative < ApplicationRecord
             zip_temp = official.address[0].zip
           end
         end
-        party_temp = official.party
+        #party_temp = official.party
+        party_temp = official.party if official.instance_variable_defined?(:@party)
         print "print this"
         puts party_temp
       end
