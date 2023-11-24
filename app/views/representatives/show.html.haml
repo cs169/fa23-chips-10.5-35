@@ -1,5 +1,3 @@
-/ name, ocdid, office, contact address, political party, photo
-
 .container
   .row.mt-5
     .col-12.text-center
@@ -15,6 +13,13 @@
     .col-12.text-center
       %p
         %strong
+          Office: 
+        #{@representative.title}
+  
+  .row.mt-3
+    .col-12.text-center
+      %p
+        %strong
           OCDID: 
         #{@representative.ocdid}
   
@@ -23,7 +28,7 @@
       %p
         %strong
           Contact Address: 
-        "#{@representative.address}, #{@representative.city}, #{@representative.state}, #{@representative.zip}"
+        #{@representative.address}, #{@representative.city}, #{@representative.state}, #{@representative.zip}
 
   .row.mt-3
     .col-12.text-center
