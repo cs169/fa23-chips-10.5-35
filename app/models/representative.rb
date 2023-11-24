@@ -3,7 +3,7 @@
 class Representative < ApplicationRecord
   has_many :news_items, dependent: :delete_all
 
-  # rubocop:disable Metrics/BlockLength, Metrics/AbcSize, Metrics/MethodLength
+  rubocop:disable Metrics/BlockLength, Metrics/AbcSize, Metrics/MethodLength
   def self.civic_api_to_representative_params(rep_info)
     reps = []
 
@@ -29,21 +29,25 @@ class Representative < ApplicationRecord
             zip_temp = official.address[0].zip
           end
         end
-        #party_temp = official.party
         party_temp = official.party if official.instance_variable_defined?(:@party)
-        #print "print this"
-        #puts party_temp
       end
 
       representative = Representative.find_or_initialize_by(name: official.name, ocdid: ocdid_temp)
       if representative.new_record?
-        rep_params = { name: official.name, ocdid: ocdid_temp, party: party_temp, photo_url: photo_url_temp, zip: zip_temp, address: street_temp, city: city_temp, state: state_temp }
-        representative = Representative.create!(rep_params)
-        representative.title = title_temp
-        representative.save!
+        rep_params = { name: official.name, ocdid: ocdid_temp, party: party_temp, 
+                        photo_url: photo_url_temp, zip: zip_temp, address: street_temp, 
+                        city: city_temp, state: state_temp }
+        set_rep(rep_params)
       end
       reps.push(representative)
     end
     reps
   end
+
+  def set_rep(rep_params)
+    representative = Representative.create!(rep_params)
+      representative.title = title_temp
+      representative.save!
+  end
+
 end
