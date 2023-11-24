@@ -18,10 +18,6 @@ class Representative < ApplicationRecord
   def self.build_representative(offices, official, index)
     ocdid_temp = ''
     title_temp = ''
-    street_temp = ''
-    city_temp = ''
-    state_temp = ''
-    zip_temp = ''
     party_temp = ''
     photo_url_temp = ''
 
