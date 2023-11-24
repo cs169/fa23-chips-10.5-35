@@ -3,7 +3,6 @@
 class Representative < ApplicationRecord
   has_many :news_items, dependent: :delete_all
 
-  # rubocop:disable Metrics/BlockLength, Metrics/AbcSize, Metrics/MethodLength
   def self.civic_api_to_representative_params(rep_info)
     reps = []
 
