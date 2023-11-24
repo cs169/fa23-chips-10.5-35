@@ -1,10 +1,33 @@
 / name, ocdid, office, contact address, political party, photo
 
-#content
-.container-fluid
-    %h2.text-center= @representative.name
-    %p.text-center= @representative.title
-    %p.text-center= @representative.ocdid
-    /%p.text-center= @representative.party
+.container
+  .row.mt-5
+    .col-12.text-center
+      %h2
+        %strong
+          #{@representative.name}
 
-    
+  .row.mt-3
+    .col-12.text-center
+      %img{src: @representative.photo_url, alt: "Representative Photo", class: "img-fluid rounded-circle"}
+  
+  .row.mt-3
+    .col-12.text-center
+      %p
+        %strong
+          OCDID: 
+        #{@representative.ocdid}
+  
+  .row.mt-3
+    .col-12.text-center
+      %p
+        %strong
+          Contact Address: 
+        "#{@representative.address}, #{@representative.city}, #{@representative.state}, #{@representative.zip}"
+
+  .row.mt-3
+    .col-12.text-center
+      %p
+        %strong
+          Political Party: 
+        #{@representative.party}
