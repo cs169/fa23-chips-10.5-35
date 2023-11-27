@@ -24,6 +24,7 @@ class Representative < ApplicationRecord
       representative = create_rep(rep_params)
       reps.push(representative)
     end
+
     reps
   end
 
