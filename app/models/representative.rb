@@ -7,44 +7,42 @@ class Representative < ApplicationRecord
     reps = []
 
     rep_info.officials.each_with_index do |official, index|
-      representative = build_representative(rep_info.offices, official, index)
+      rep_params = { name: official.name, ocdid: '', party: '', photo_url: '',
+          zip: '', address: '', city: '', state: '' }
+
+      rep_info.offices.each do |office|
+        if office.official_indices.include? index
+          rep_params[:title] = office.name
+          rep_params[:ocdid] = office.division_id
+        end
+        create_address(rep_params, official)
+
+        rep_params[:photo_url] = official.photo_url if official.instance_variable_defined?(:@photo_url)
+        rep_params[:party] = official.party if official.instance_variable_defined?(:@party)
+      end
+
+      representative = create_rep(rep_params)
       reps.push(representative)
     end
 
     reps
   end
 
-  def self.build_representative(offices, official, index)
-    ocdid_temp = ''
-    title_temp = ''
-    party_temp = ''
-    photo_url_temp = ''
+  def self.create_address(rep_params, official)
+    return if official.address.nil?
 
-    offices.each do |office|
-      if office.official_indices.include?(index)
-        title_temp = office.name
-        ocdid_temp = office.division_id
-        photo_url_temp = official.photo_url if official.instance_variable_defined?(:@photo_url)
-      end
-      party_temp = official.party if official.instance_variable_defined?(:@party)
-    end
-
-    representative = Representative.find_or_initialize_by(name: official.name, ocdid: ocdid_temp)
-    create_rep(representative, official)
-
-    representative
+    rep_params[:address] = official.address[0].line1
+    rep_params[:city] = official.address[0].city
+    rep_params[:state] = official.address[0].state
+    rep_params[:zip] = official.address[0].zip
   end
 
-  def self.create_rep(representative, official)
-    return unless representative.new_record?
-
-    rep_params = {
-      name: official.name, ocdid: ocdid_temp, party: party_temp,
-      photo_url: photo_url_temp, zip: zip_temp, address: street_temp,
-      city: city_temp, state: state_temp
-    }
-    representative = Representative.create!(rep_params)
-    representative.title = title_temp
-    representative.save!
+  def self.create_rep(rep_params)
+    representative = Representative.find_or_initialize_by(name: rep_params[:name], ocdid: rep_params[:ocdid])
+    if representative.new_record?
+      representative = Representative.create!(rep_params)
+      representative.save!
+    end
+    representative
   end
 end
