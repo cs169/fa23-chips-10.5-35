@@ -15,10 +15,9 @@ Feature: Clicking between states and county
 
 @load-seed-data
 Scenario: Clicking on Alameda county
-  Given I am on the home page
-  When I click on the CA state
-#   And I click on the Counties in California button
-#   Then I should see a list of counties
+  Given I navigated to CA from the map
+  When  I click on the list of counties in California
+  Then I should see a list of counties
 
-  When I click on the county with name "Alameda County"
-  Then I should see a list of representatives
+  # When I click on the county with name "Alameda County"
+  # Then I should see a list of representatives

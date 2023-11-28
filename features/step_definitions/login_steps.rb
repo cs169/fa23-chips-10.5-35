@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-Given /^(?:|I ) am on login page$/ do
-  visit path_to(login)
+Given /I am on login page$/ do
+  log(current_path)
+  visit path_to("login")
+  log(current_url)
 end
 
 When /^I login with (.+)$/ do |provider|
