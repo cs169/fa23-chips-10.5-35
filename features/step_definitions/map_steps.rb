@@ -12,14 +12,32 @@ Then /(.*) seed states should exist/ do |n_seeds|
   expect(State.count).to eq n_seeds.to_i
 end
 
-When /I click on the (.*) state/ do |state|
-  visit state_map_path(state)
+
+Given /I navigated to (.*) from the map/ do |state|
+  log(state_map_path(state))
+  visit state_map_path(state) #"/state/#{state}"
+  log(current_url)
 end
 
-When /I click on the Counties in (.*) button/ do |state|
-  click_button "Counties in #{state}"
+When /I click on the list of counties in (.*)/ do |state|
+  log(current_path)
+  case
+    find_button("Counties in #{state}", wait: 10)
+  when Capybara::ElementNotFound
+    log("Element not found")
+  end
+  # click_button "Counties in #{state}"
 end
 
 Then /I should see a list of counties/ do
+  log(page.body)
   find('#actionmap-state-counties-table')
 end
+
+When('I click on the county with name {string}') do |string|
+    pending # Write code here that turns the phrase above into concrete actions
+  end
+  
+  Then('I should see a list of representatives') do
+    pending # Write code here that turns the phrase above into concrete actions
+  end
