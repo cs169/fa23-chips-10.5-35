@@ -1,0 +1,21 @@
+.row.mt-2
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        %h1.text-center Search Campaign Finances
+
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        = form_tag search_finances_path, method: :get do
+            .form-group.row
+                .col-md-4
+                    %label.col-form-label
+                        Select a cycle:
+                .col-md-6
+                    = select_tag(:cycle, options_for_select((2010..2020).step(2).map { |year| [year, year] }), class: 'form-control')
+            .form-group.row
+                .col-md-4
+                    %label.col-form-label
+                        Select a category:
+                .col-md-6
+                    = select_tag(:category, options_for_select(@categories), class: 'form-control')
+
+            .actions
+                = submit_tag 'Search', class: 'btn btn-primary'
