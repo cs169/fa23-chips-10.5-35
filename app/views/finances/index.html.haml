@@ -9,7 +9,8 @@
                     %label.col-form-label
                         Select a cycle:
                 .col-md-6
-                    = select_tag(:cycle, options_for_select((2010..2020).step(2).map { |year| [year, year] }), class: 'form-control')
+                    = select_tag(:cycle, options_for_select((2010..2020).step(2).map { |year| [year, year] }),
+                        class: 'form-control')
             .form-group.row
                 .col-md-4
                     %label.col-form-label
