@@ -11,10 +11,12 @@
                     %caption Top 20 Candidates
                     %thead.thead-dark
                         %tr
+                            %th Rank
                             %th Candidate Name
                             %th Amount
                     %tbody
-                        - @results.each_with_index do |rep, _index|
+                        - @results.each_with_index do |rep, index|
                             %tr
+                                %td= index + 1
                                 %td= rep[:name]
                                 %td $#{rep[:amount]}

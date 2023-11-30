@@ -11,25 +11,30 @@ class FinancesController < ApplicationController
   end
 
   def search
-    reverse_categories = { 'candidate-loan' => 'Candidate Loan', 'contribution-total' => 'Contribution Total',
-      'debts-owed' => 'Debts Owed', 'disbursements-total' => 'Disbursements Total', 'end-cash' => 'End Cash',
-      'individual-total' => 'Individual Total', 'pac-total' => 'PAC Total', 'receipts-total' => 'Receipts Total',
-      'refund-total' => 'Refund Total' }
     response = JSON.parse(Finance.campaign_finances_to_representative_params(params))
     @cycle = params[:cycle]
-    @category = reverse_categories[params[:category].to_s]
-    @results = get_canidate_category(response['results'], CATEGORIES[@category.to_s])
+    @category = get_category_key(params[:category], 1)
+    # puts "search category"
+    # puts @category
+    @results = get_canidate_category(response['results'], CATEGORIES[@category.to_s]).take(20)
   end
 
   private
 
-  def get_canidate_category(result, category)
-    data_keys = { 'candidate-loan' => 'candidate_loans', 'contribution-total' => 'total_contributions',
-      'debts-owed' => 'debts_owed', 'disbursements-total' => 'total_disbursements', 'end-cash' => 'end_cash',
-      'individual-total' => 'total_from_individuals', 'pac-total' => 'total_from_pacs',
-      'receipts-total' => 'total_receipts', 'refund-total' => 'total_refunds' }
+  def get_category_key(category, type)
+    data_keys = { 'disbursements-total' => ['total_disbursements', 'Disbursements Total'],
+      'candidate-loan' => ['candidate_loans', 'Candidate Loan'], 'debts-owed' => ['debts_owed', 'Debts Owed'],
+      'end-cash' => ['end_cash', 'End Cash'], 'individual-total' => ['total_from_individuals', 'Individual Total'],
+      'pac-total' => ['total_from_pacs', 'PAC Total'], 'receipts-total' => ['total_receipts', 'Receipts Total'],
+      'contribution-total' => ['total_contributions', 'Contribution Total'],
+      'refund-total' => ['total_refunds', 'Refund Total'] }
+    type.zero? ? data_keys[category.to_s][0] : data_keys[category.to_s][1]
+  end
 
-    actual_category = data_keys[category.to_s]
+  def get_canidate_category(result, category)
+    actual_category = get_category_key(category, 0)
+    # puts "actual category"
+    # puts actual_category
 
     candidates = result.map do |candidate|
       { name: candidate['name'], amount: candidate[actual_category.to_s] || 0 }
