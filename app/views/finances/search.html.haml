@@ -1,0 +1,22 @@
+.container-fluid
+    %h1.text-center.mb-4
+        Top 20 Candidates for
+        %b= @category
+        in
+        %b= @cycle
+    .row
+        .col-md-8.offset-md-2
+            .table-responsive-md.pt-5
+                %table.table.table-striped.table-hover#events
+                    %caption Top 20 Candidates
+                    %thead.thead-dark
+                        %tr
+                            %th Rank
+                            %th Candidate Name
+                            %th Amount
+                    %tbody
+                        - @results.each_with_index do |rep, index|
+                            %tr
+                                %td= index + 1
+                                %td= rep[:name]
+                                %td $#{rep[:amount]}
