@@ -42,4 +42,9 @@ Rails.application.routes.draw do
                                                                       via: [:delete]
     end
     get '/search/(:address)' => 'search#search', :as => 'search_representatives'
+
+    # Routes for Finance
+    get '/finances', to: 'finances#index', :as => 'finances'
+    get '/finances/search', to: 'finances#search', :as => 'search_finances'
+  
 end
