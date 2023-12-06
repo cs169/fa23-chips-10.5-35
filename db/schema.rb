@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_065604) do
     t.string "title", null: false
     t.string "link", null: false
     t.text "description"
+    t.string "issue"
     t.integer "representative_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
