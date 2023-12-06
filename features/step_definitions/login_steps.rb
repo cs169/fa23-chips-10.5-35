@@ -40,13 +40,3 @@ def auth_stuff(provider)
   OmniAuth.config.mock_auth[fake_user[:provider]] = fake_user
   click_button "Sign in with #{provider}"
 end
-
-# Given /^I am logged in/ do
-# end
-
-# When /^I go to the (.+) page$/ do |page|
-#     case page
-#     when 'logout'
-#         visit path_to(logout)
-#     end
-# end
