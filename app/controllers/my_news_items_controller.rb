@@ -12,7 +12,7 @@ class MyNewsItemsController < SessionController
      Change', 'Homelessness', 'Racism', 'Tax Reform', 'Net Neutrality', 'Religious
      Freedom', 'Border Security', 'Minimum Wage', 'Equal Pay']
   end
-  
+
   def new
     @news_item = NewsItem.new
   end
