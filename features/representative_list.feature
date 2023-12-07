@@ -7,5 +7,5 @@ Scenario: User enters an address and clicks search
     And I click the Search button
     Then I should see a list of 26 representatives
 
-    When I click on the artilce of the first representative
+    When I click on the article of the first representative
     Then I should get news items for the first representative

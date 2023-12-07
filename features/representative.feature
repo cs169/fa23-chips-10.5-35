@@ -4,6 +4,7 @@ Feature: View and learn about representatives
   So that I can learn more about elected officials
   I want to be able to search for them effectively
 
+# @load-seed-data
 Background:
 
   Scenario: View a specific representative
@@ -11,11 +12,15 @@ Background:
     When I visit the representative's page
     Then I should see the details of that representative
 
+  @load-seed-data
   Scenario: Access profile page from search
-    Given I visit the search page
-    When I search for Fairfax County
-    When I click on Joseph R. Biden's link in the search results
-    Then I should see Joseph R. Biden's information
+    Given I am on the representatives page
+      When I enter Fairfax County into the search field
+      And I click the Search button
+      Then I should see a list of 8 representatives
+
+      When I click on the name Joseph R. Biden
+      Then I should see information on Joseph R. Biden
 
   Scenario: get Dan Sullivan info
     When I am on the home page
