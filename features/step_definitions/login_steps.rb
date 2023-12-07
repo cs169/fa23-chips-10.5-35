@@ -23,6 +23,13 @@ Given /^I am logged in with (.+)$/ do |provider|
   auth_stuff(provider)
 end
 
+And /I navigate to edit news article page for representative id (.+)/ do
+  case current_path
+  when '/login'
+    auth_stuff('Google')
+  end
+end
+
 def auth_stuff(provider)
   OmniAuth.config.test_mode = true
 
